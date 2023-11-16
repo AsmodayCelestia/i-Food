@@ -94,7 +94,7 @@ html {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-image: url('https://static.hbo.com/2022-06/house-of-the-dragon-ka-1920.jpg');
+    background-image: url('../public/bannerbackground.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

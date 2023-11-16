@@ -66,7 +66,6 @@ export default function HomePage({changePage}){
             })
             setWork(true);
             console.log(currentPage, 'bfr') 
-            // console.log(params);
       }
       const filter = async (typeId)=>{
             setFilter(typeId)
@@ -89,15 +88,15 @@ export default function HomePage({changePage}){
 
     return (
     <>
-        {/* Hero Section Start */}
+    {/* Hero Section Start */}
     <section className="hero" id="home">
     <main className="content">
         <h1>
-        <span>Kicknews</span>
+            <span>Kicknews</span>
         </h1>
         <h1>Infotainment News Everyday</h1>
         <a href="#" className="cta">
-        Check Now
+            Check Now
         </a>
     </main>
     </section>

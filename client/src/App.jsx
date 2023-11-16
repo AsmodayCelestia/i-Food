@@ -5,14 +5,17 @@ import viteLogo from '/vite.svg'
 import Navbar from './components/navbar';
 import './style.css'
 import './index.css'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import {RouterProvider, createBrowserRouter, redirect} from "react-router-dom"
 import HomePage from './views/HomePage.jsx'
 import Login from './views/Login.jsx'
 import Register from './views/Register.jsx'
+import DetailNews from './views/DetailNews.jsx';
 // import EditImage from './views/editImage.jsx'
 // import EditNews from './views/editNews.jsx'
 // import Category from './views/category.jsx'
 import Layout from './components/Layout.jsx'
+import OrderProvider from './contexts/OrderProvider.jsx';
 
 const loader = ()=>{
   if(!localStorage.Authorization){
@@ -54,11 +57,15 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login/>
       },
-      // {
-      //   path: "/register",
-      //   element: <Register/>,
-      //   loader
-      // },
+      {
+        path: "/menu/:id",
+        element: <DetailNews/>
+      },
+      {
+        path: "/register",
+        element: <Register/>,
+        loader
+      },
       // {
       //   path: "/category",
       //   element: <Category/>,
@@ -72,7 +79,11 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-     <RouterProvider router={router}/>
+      <GoogleOAuthProvider clientId="770065709347-c3052vfr69lljkpgprgca0ukc4322f04.apps.googleusercontent.com">
+          <OrderProvider>
+              <RouterProvider router={router}/>
+          </OrderProvider>
+      </GoogleOAuthProvider>;
     </>
   )
 }
