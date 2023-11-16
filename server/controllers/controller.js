@@ -7,7 +7,6 @@ const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client();
 
 class Controller{
-
     static async login(req, res, next){
         try {
             const {email, password} = req.body
