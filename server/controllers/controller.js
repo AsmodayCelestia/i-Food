@@ -223,50 +223,59 @@ class Controller{
         }
     }
 
-    // static async payment(req, res){
-    //     try {
-    //       const apiKey =
-    //         "xnd_development_iqsCxP1N6hsI9vq0pwojos0UxR8HN3dn6HSul2t9L6KA05Ig5EkBmIzbV1";
-    //       const base64ApiKey = Buffer.from(apiKey + ":").toString("base64");
-    //       const headers = {
-    //         Authorization: `Basic ${base64ApiKey}`,
-    //         "Content-Type": "application/json",
-    //       };
-    //       console.log(req.body);
+    static async payment(req, res){
+        try {
+          const apiKey =
+            "xnd_development_iqsCxP1N6hsI9vq0pwojos0UxR8HN3dn6HSul2t9L6KA05Ig5EkBmIzbV1";
+          const base64ApiKey = Buffer.from(apiKey + ":").toString("base64");
+          const headers = {
+            Authorization: `Basic ${base64ApiKey}`,
+            "Content-Type": "application/json",
+          };
+          console.log(req.body);
       
-    //       const requestData = {
-    //         external_id: `invoice-${Date.now()}`,
-    //         amount: req.body.price,
-    //         payer_email: req.body.email,
-    //         // description: `Sewa film ${}`,
-    //         success_redirect_url: `https://nusa-batik.web.app/DetailProduct/${req.body.param.id}`,
-    //       };
+          const requestData = {
+            external_id: `invoice-${Date.now()}`,
+            amount: req.body.total,
+            // payer_email: req.body.email,
+            // description: `Sewa film ${}`,
+            success_redirect_url: `http://localhost:5173`,
+          };
+          
+
+
+          const response = await axios.post(
+            "https://api.xendit.co/v2/invoices",
+            requestData,
+            {
+              headers: headers,
+            }
+          );
       
-    //       const response = await axios.post(
-    //         "https://api.xendit.co/v2/invoices",
-    //         requestData,
-    //         {
-    //           headers: headers,
-    //         }
-    //       );
-      
-    //       const payment = await Transaction.create({
-    //         quantity: 1,
-    //         status: "paid",
-    //         sendAddress: "jalan ini",
-    //         price: req.body.price,
-    //         UserId: req.body.UserId,
-    //         BatikTypeId: req.body.TypeId,
-    //       });
-    //       console.log(requestData, response.data);
-    //       res.json({ invoiceUrl: response.data.invoice_url });
-    //     } catch (error) {
-    //       console.error(error);
-    //       res
-    //         .status(500)
-    //         .json({ error: "Terjadi kesalahan dalam membuat pembayaran." });
-    //     }
-    //   };
+        //   const payment = await Transaction.create({
+        //     quantity: 1,
+        //     status: "paid",
+        //     sendAddress: "jalan ini",
+        //     price: req.body.price,
+        //     UserId: req.body.UserId,
+        //     BatikTypeId: req.body.TypeId,
+        //   });
+        const payment = await Cart.destroy({
+            where: {},
+          });         
+          
+          const paid = await Transaction.destroy({
+            where: {},
+          });  
+          console.log(requestData, response.data);
+          res.json({ invoiceUrl: response.data.invoice_url });
+        } catch (error) {
+          console.error(error);
+          res
+            .status(500)
+            .json({ error: "Terjadi kesalahan dalam membuat pembayaran." });
+        }
+      };
 }
 
 module.exports = Controller 

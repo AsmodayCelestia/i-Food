@@ -32,6 +32,26 @@ const Cart = () => {
     return news.reduce((total, item) => total + item.Menu.price * item.quantity, 0);
   };
 
+  const buy = async () => {
+    try {
+      // Make a POST request to send the total price to the server
+      const response = await axios.post("http://localhost:3000/payment", {
+        total: calculateTotal(),
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('Authorization'),
+        },
+      });
+
+      // Handle the response as needed, e.g., show a success message
+      console.log(response.data);
+      window.location.href= response.data.invoiceUrl
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error(error);
+    }
+}
+
   return (
     <>
       <div className="h-screen bg-gray-100 pt-20">
@@ -57,7 +77,7 @@ const Cart = () => {
                 <p className="text-sm text-gray-700">including VAT</p>
               </div>
             </div>
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+            <button onClick={buy} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
               Check out
             </button>
           </div>
