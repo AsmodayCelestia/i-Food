@@ -2,12 +2,18 @@ const { verifyToken } = require("../helpers/jwt")
 const {User} = require('../models')
 
 async function authentication(req, res, next) {
-    // console.log(req.headers, "<<<<<<<<<");
+    console.log(req, "<<<<<<<<<");
     try{
         //1. Cek apakah user sudah login, jika sudah maka access_token harusnya ada
-        // console.log(req.headers.authorization);
-        const bearerToken = req.headers.authorization
-        console.log(bearerToken);
+        // console.log(req.headers.authorization, "ayo dong");
+        let bearerToken
+        if(!req.body.headers){
+            bearerToken = req.headers.authorization
+        }else{
+            bearerToken = req.body.headers.Authorization
+
+        }
+        console.log(bearerToken, "harus masuk");
         if(!bearerToken){
             throw {name: "Invalid Token"}
         }
@@ -33,4 +39,4 @@ async function authentication(req, res, next) {
         // console.log(error);
     }
 }
-module.exports = authentication
+module.exports = {authentication}

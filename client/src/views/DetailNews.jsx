@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useOrder } from '../contexts/OrderProvider';
 import { BsCart2 } from 'react-icons/bs';
+import swal from "sweetalert"
 import React from "react";
 import axios from "axios";
 
@@ -10,8 +12,10 @@ export default function detailNews(){
     const [news, setNews] = useState({})
     const [quantity, setQuantity] = useState(1)
     const [disabled, setDisabled] = useState(false)
+    const { handleOrder } = useOrder();
     const [isLoading, setIsLoading] =useState(false)
     const {id} = useParams()
+    const navigate = useNavigate()
     useEffect(()=>{
             window.scrollTo(0,0);
         if(id){
@@ -30,14 +34,18 @@ export default function detailNews(){
         }
     }
 
-    const addCart = async(id)=>{
+    const addCart = async()=>{
         try {
             console.log("click", id);
-            const {data} = await axios.post(`http://localhost:3000/cart`, form,{
+            console.log(localStorage.getItem('Authorization'));
+            const {data} = await axios.post(`http://localhost:3000/transaction`, {
+                data: {menuId: id, quantity, price: news.price * quantity},    
                 headers: {
-                    "Authorization": localStorage.getItem('Authorization'),
+                    Authorization : localStorage.getItem('Authorization'),
                 }
             })
+            console.log(data);
+            navigate('/cart')
         } catch (error) {
             console.log(error);
         }
@@ -72,7 +80,7 @@ export default function detailNews(){
         </div>
                         {/* price and quantity  */}
                             <div className="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
-                                <h1 className="text-3xl font-bold text-black poppins select-none">${(news.price * quantity).toFixed(2)}</h1>
+                                <h1 className="text-3xl font-bold text-black poppins select-none" >${(news.price * quantity).toFixed(2)}</h1>
                                 {/* quantity  */}
                                 <div className="flex items-center border border-gray-200 px-4 py-2 space-x-6 rounded-full">
                                     <AiOutlineMinus onClick={() => {
@@ -90,24 +98,29 @@ export default function detailNews(){
                                 </div>
                             </div>
 
-                        {/* add button  */}
-                            <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
-                                <button disabled={disabled} className={disabled ? "opacity-30 flex items-center space-x-3 bg-primary px-6 py-3 text-white poppins rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105" 
-                                : "flex items-center space-x-3 bg-primary px-6 py-3 text-white poppins rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"} onClick={() => addCart(id)}>
-                                {/* {
-                                    news['quantity'] = quantity;
-                                    news.price = news.price * quantity;
-                                    handleOrder(news);
-                                    setDisabled(true);
-                                    swal("Wow!!!", "Your order has added to the cart", "success")
-                                    // history.push('/orders')
+{/* add button  */}
+<div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
+  <button
+    disabled={disabled}
+    className={
+      disabled
+        ? "opacity-30 flex items-center space-x-3 bg-primary px-6 py-3 text-white poppins rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"
+        : "flex items-center space-x-3 bg-primary px-6 py-3 text-white poppins rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"
+    }
+    onClick={() => {
+      addCart(id);
+      news['quantity'] = quantity;
+      news.price = news.price * quantity;
+      handleOrder(news);
+      setDisabled(true);
+      swal("Wow!!!", "Your order has been added to the cart", "success");
+    }}
+  >
+    <BsCart2 className="text-xl" />
+    <span>{disabled ? "Added" : "Add to Cart"}</span>
+  </button>
+</div>
 
-                                    console.log(news)
-                                }}> */}
-                                    <BsCart2 className="text-xl" />
-                                    <span>{disabled ? "Added" : "Add to Cart"}</span>
-                                </button>
-                            </div>
       </div>
     </div>
   </section>

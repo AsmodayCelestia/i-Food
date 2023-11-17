@@ -166,11 +166,6 @@ export default function HomePage({changePage}){
                     Dinner
                 </a>
             </li>
-            <li style={{cursor: 'pointer'}} onClick={()=>filter(4)}>
-                <a>
-                    Music
-                </a>
-            </li>
             </ul>
         </div>
         <div className="dropdown dropdown-hover">
@@ -202,8 +197,8 @@ export default function HomePage({changePage}){
             return (
             <CardItem key={el.id} name={el.name} description={el.description} image={el.image} price={el.price} id={el.id}/>)
         })}
-        </div>
-        </section>
+    </div>
+    </section>
     {/* Menu Section End */}
 
     {/* pagination */}

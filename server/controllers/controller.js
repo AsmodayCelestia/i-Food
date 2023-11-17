@@ -1,4 +1,4 @@
-const {User, Menu, Category, Transaction, Sequelize} = require('../models')
+const {User, Menu, Category, Transaction, Cart, Sequelize} = require('../models')
 const {comparePassword} = require('../helpers/bcrypt')
 const {signToken} = require('../helpers/jwt')
 const { Op } = Sequelize;
@@ -68,8 +68,6 @@ class Controller{
                     user = await User.create({
                         email:payload.email,
                         password:payload.email,
-                    }, {
-                        hooks: false
                     })
                 }
                 let access_token = signToken({
@@ -164,17 +162,66 @@ class Controller{
         }
     }
 
-    // static async cart(req, res, next){
-    //     try {
-    //     const {id} = req.params
-    //     console.log(id);
-    //         const data = await Cart.findAll({where:{transactionId:id}});
-    //         console.log(data, "<<<<dapet nih abangkuuuh");
-    //         res.status(200).json(data)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    static async addCart(req, res, next) {
+        try {
+            const { menuId, transactionId, quantity, price } = req.body.data;
+    
+            // Ensure "userId" is not included if it's not part of the Cart model
+            const data = await Cart.create({ menuId, transactionId, quantity, price });
+    
+            res.status(200).json(data);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+    
+    static async transaction(req, res, next) {
+        try {
+          console.log(req.user.id, "ini di transaction");
+          const userId = req.user.id
+          const transaction = await Transaction.create({ userId });
+          console.log(transaction, "<<<<dapet nih abangkuuuh");
+      
+          // Now, if you want to add a Cart to the Transaction, you can do something like this:
+          const { menuId, quantity, price } = req.body.data;
+          const cart = await Cart.create({
+            menuId,
+            transactionId: transaction.id,
+            quantity,
+            price,
+            userId
+          });
+      
+          res.status(200).json(cart);
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+
+    static async allCart(req, res, next) {
+        try {
+
+            console.log("sampe sini");
+            const data = await Cart.findAll({ 
+                include: [
+                    {model: Transaction,
+                    },
+                    {model: Menu,
+                    }
+                ],
+                order: [
+                    ['id', 'ASC'] 
+                ]
+        });
+            console.log(data);
+            res.status(200).json({data});
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
 
     // static async payment(req, res){
     //     try {

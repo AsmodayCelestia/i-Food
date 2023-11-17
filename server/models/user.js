@@ -1,8 +1,8 @@
 'use strict';
-const { hashPassword } = require('../helpers/bcrypt');
 const {
   Model
 } = require('sequelize');
+const { hashPassword } = require('../helpers/bcrypt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Cart, {foreignKey:'userId'})
+      // User.hasMany(models.Cart, {foreignKey:'userId'})
     }
   }
   User.init({
