@@ -14,7 +14,7 @@ const Cart = () => {
   const fetchCart = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:3000/cart", {
+      const { data } = await axios.get("https://api.asmodaycelestia.online/cart", {
         headers: {
           Authorization: localStorage.getItem('Authorization'),
         }
@@ -35,7 +35,7 @@ const Cart = () => {
   const buy = async () => {
     try {
       // Make a POST request to send the total price to the server
-      const response = await axios.post("http://localhost:3000/payment", {
+      const response = await axios.post("https://api.asmodaycelestia.online/payment", {
         total: calculateTotal(),
       }, {
         headers: {

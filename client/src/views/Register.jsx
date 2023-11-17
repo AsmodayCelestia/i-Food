@@ -26,7 +26,7 @@ export default function login(){
       event.preventDefault()
       try {
         const { data } = await axios({
-            url: `http://localhost:3000/register`,
+            url: `https://api.asmodaycelestia.online/register`,
             method: `POST`,
             data: form,
             headers: {

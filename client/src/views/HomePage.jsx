@@ -21,7 +21,7 @@ export default function HomePage({changePage}){
 
     const fetchDataNews = async () => {
         try {
-            const {data} = await axios.get("http://localhost:3000/menu", { 
+            const {data} = await axios.get("https://api.asmodaycelestia.online/menu", { 
             params: {
                 page: {
                     size: 9, 

@@ -23,7 +23,7 @@ export default function login(){
     const handleLogin =  async (event)=>{
       event.preventDefault()
       try {
-        const {data} = await axios.post("http://localhost:3000/login", form)
+        const {data} = await axios.post("https://api.asmodaycelestia.online/login", form)
         console.log(data);
         localStorage.Authorization = `${data.Authorization}`
         navigate('/')
@@ -37,7 +37,7 @@ export default function login(){
         console.log(credentialResponse);
         const {data} = await axios({
           method: "POST",
-          url: "http://localhost:3000/googleLogin",
+          url: "https://api.asmodaycelestia.online/googleLogin",
           headers: {
             google_token: credentialResponse.credential
           }

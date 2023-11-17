@@ -26,7 +26,7 @@ export default function detailNews(){
     const fetchById =async()=>{
         setIsLoading(true)
         try{
-            const {data} = await axios.get("http://localhost:3000/menu/"+id)
+            const {data} = await axios.get("https://api.asmodaycelestia.online/menu/"+id)
             console.log(data, "<<<<<<<<<");
             setNews(data.menu)
         }catch(error){
@@ -38,7 +38,7 @@ export default function detailNews(){
         try {
             console.log("click", id);
             console.log(localStorage.getItem('Authorization'));
-            const {data} = await axios.post(`http://localhost:3000/transaction`, {
+            const {data} = await axios.post(`https://api.asmodaycelestia.online/transaction`, {
                 data: {menuId: id, quantity, price: news.price * quantity},    
                 headers: {
                     Authorization : localStorage.getItem('Authorization'),

@@ -239,7 +239,7 @@ class Controller{
             amount: req.body.total,
             // payer_email: req.body.email,
             // description: `Sewa film ${}`,
-            success_redirect_url: `http://localhost:5173`,
+            success_redirect_url: `https://ifood-9263a.web.app`,
           };
           
 
