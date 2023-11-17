@@ -36,7 +36,7 @@ export default function Navbar(){
     <>
   {/* Navbar Start */}
   <nav className="navbar">
-      <Link className="navbar-logo ml-5" to={'/'}>Kick<span>news</span>.</Link>
+      <Link className="navbar-logo ml-5" to={'/'}>I-<span>FOOD</span>.</Link>
     <div className="flex w-full navbar-nav sm:flex-row flex-col sm:justify-center justify-start">
       <Link to={'/'}>Home</Link>
       {/* <Link to={'/category'}>Category</Link> */}

@@ -92,12 +92,9 @@ export default function HomePage({changePage}){
     <section className="hero" id="home">
     <main className="content">
         <h1>
-            <span>Kicknews</span>
+            <span>I-FOOD</span>
         </h1>
-        <h1>Infotainment News Everyday</h1>
-        <a href="#" className="cta">
-            Check Now
-        </a>
+        <h1>Delightful Sensation</h1>
     </main>
     </section>
     {/* Hero Section End */}
