@@ -44,7 +44,7 @@ export default function Navbar(){
       <a onClick={logout}>{localStorage.Authorization ? "Logout" : ""}</a>
       <div className="relative flex cursor-pointer" onClick={() => history.push('/orders')}>
               <span className="bg-primary w-6 h-6 rounded-full flex items-center justify-center text-white poppins absolute -right-2 -top-2">{order.length}</span>
-          <BsCart2 className="cursor-pointer w-6 h-6 text-gray-700" />
+          <BsCart2 className="cursor-pointer w-6 h-6 text-white" />
       </div>
     </div>
     <div className="flex-auto navbar-extra mr-5 justify-end">

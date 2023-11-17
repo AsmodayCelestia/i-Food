@@ -10,8 +10,7 @@ const OrderProvider = ({ children }) => {
 
     // add order function 
     const handleOrder = (food) => {
-        console.log(data);
-        navigate('/')
+        console.log(food);
         setOrder((prevValue) => {
             return [
                 ...prevValue,

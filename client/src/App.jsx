@@ -11,6 +11,9 @@ import HomePage from './views/HomePage.jsx'
 import Login from './views/Login.jsx'
 import Register from './views/Register.jsx'
 import DetailNews from './views/DetailNews.jsx';
+import CartPage from './views/CartPage.jsx'
+import CardCart from './components/CardCart.jsx';
+import CardItem from './components/CardItem.jsx';
 // import EditImage from './views/editImage.jsx'
 // import EditNews from './views/editNews.jsx'
 // import Category from './views/category.jsx'
@@ -36,6 +39,11 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <HomePage/>, 
+        loader
+      },
+      {
+        path: "/cart",
+        element: <CartPage/>,
         loader
       },
       // {
