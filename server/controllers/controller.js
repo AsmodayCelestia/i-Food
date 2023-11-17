@@ -1,7 +1,7 @@
-const {User, Menu, Category, Transaction, Cart, Sequelize} = require('../models')
+const {User, Menu, Category, Transaction, Cart} = require('../models')
 const {comparePassword} = require('../helpers/bcrypt')
 const {signToken} = require('../helpers/jwt')
-const { Op } = Sequelize;
+const { Op } = require("sequelize");
 const axios = require('axios')
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client();
