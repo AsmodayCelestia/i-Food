@@ -1,4 +1,5 @@
 'use strict';
+require("dotenv").config()
 const axios = require('axios')
 const {hashPassword} = require('../helpers/bcrypt')
 /** @type {import('sequelize-cli').Migration} */
@@ -13,8 +14,8 @@ module.exports = {
           tags: 'under_30_minutes'
         },
         headers: {
-          'X-RapidAPI-Key': 'e75fe5845fmsh0c96634a1dd9c12p1304a7jsn88f968a9bae5',
-          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+          'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
         }
       });
 

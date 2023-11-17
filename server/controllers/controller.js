@@ -226,7 +226,7 @@ class Controller{
     static async payment(req, res){
         try {
           const apiKey =
-            "xnd_development_iqsCxP1N6hsI9vq0pwojos0UxR8HN3dn6HSul2t9L6KA05Ig5EkBmIzbV1";
+            process.env.XENDIT_API_KEY;
           const base64ApiKey = Buffer.from(apiKey + ":").toString("base64");
           const headers = {
             Authorization: `Basic ${base64ApiKey}`,
