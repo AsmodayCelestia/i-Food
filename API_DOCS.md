@@ -17,7 +17,7 @@ List of Available Endpoints:
 - `PUT /payment`
 
 ======================================================
-### GET /pub/articles
+### GET /menu
 
 ### Description
 
@@ -64,20 +64,19 @@ _200 - OK_
 ```json
   { 
   "message": "Read Success",
-  "article": [
+  "menu": [
     {
       "id": " Integer",
-      "title": "String",
-      "content": "String",
-      "imgUrl": "String",
+      "name": "String",
+      "description": "String",
+      "image": "String",
+      "price": "Integer",
       "categoryId": "Integer",
-      "authorId": "Integer",
       "createdAt" : "Date",
       "updatedAt" : "Date"
     },
     ]
   }
-```
 
 _401 - Unauthorized_
 
@@ -105,7 +104,7 @@ _401 - Unauthorized_
 
 ### Description
 
-Login Admin Account
+Login Account
 
 ### Request
 
@@ -143,11 +142,11 @@ _400 - Bad Request_
   ```
 
 ===============================
-### POST /pub/register
+### POST /register
 
 ### Description
 
-Register New Staff Account
+Register Account
 
 ### Request
 
@@ -215,7 +214,7 @@ _400 - Bad Request_
   ```
 
 =============================
-### POST /articles
+### POST /transaction
 
 ### Description
 
