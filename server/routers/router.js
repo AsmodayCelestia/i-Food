@@ -13,5 +13,4 @@ router.post('/cart', authentication, Controller.addCart)
 router.get('/cart', authentication, Controller.allCart)
 router.post('/payment', authentication, Controller.payment)
 
-
 module.exports = router

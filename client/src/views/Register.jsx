@@ -55,9 +55,9 @@ export default function login(){
         <div className="flex flex-col justify-center items-center">
           <div id="login" className="login">
             <h2>
-              <span>Welcome</span> to Kicnews
+              <span>Welcome</span> to I-Food
             </h2>
-            <h4>Sign Up and enjoy Kicknews full feature</h4>
+            <h4>Sign Up and enjoy I-Food full feature</h4>
           </div>
           <form onSubmit={handleRegister} id="login" className="flex flex-col w-2/3">
           <div className="flex flex-col w-full">
@@ -126,7 +126,7 @@ export default function login(){
       </div>
       <div className="cols-6" style={{ height: "100vh", padding: 0 }}>
         <img
-          src="./mission-impossible-dead-reckoning-part-1-phone-wallpaper-4k-uhdpaper.com-716@1@k.jpg"
+          src="./berdamage.jpeg"
           className="w-[1000px]"
         />
       </div>
