@@ -11,7 +11,7 @@ return(
             <div className="flex flex-col items-center my-3 space-y-2">
                 <h1 className="text-gray-900 poppins text-lg">{name}</h1>
                 <p className="text-gray-500 poppins text-sm text-center">{description.slice(0,50)}</p>
-                <h2 className="text-gray-900 poppins text-2xl font-bold">${price}</h2>
+                <h2 className="text-gray-900 poppins text-2xl font-bold">Rp. {price}, 00</h2>
                 <button className="bg-primary text-white px-8 py-2 focus:outline-none poppins rounded-full mt-24 transform transition duration-300 hover:scale-105">Order Now</button>
             </div>
         </div>

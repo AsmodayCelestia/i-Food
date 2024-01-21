@@ -202,7 +202,6 @@ class Controller{
 
     static async allCart(req, res, next) {
         try {
-
             console.log("sampe sini");
             const data = await Cart.findAll({ 
                 include: [
@@ -215,7 +214,7 @@ class Controller{
                     ['id', 'ASC'] 
                 ]
         });
-            console.log(data);
+            console.log(data.data);
             res.status(200).json({data});
         } catch (error) {
             console.error(error);

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { AiOutlineMenu,  } from "react-icons/ai";
 import { BsCart2 } from 'react-icons/bs';
 import { Link, useNavigate } from "react-router-dom";
-import { useOrder } from '../contexts/OrderProvider';
+// import { useOrder } from '../contexts/OrderProvider';
 
 export default function Navbar(){
-    const { order } = useOrder();
+    // const { order } = useOrder();
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function Navbar(){
       <Link to={'/register'}>Register</Link>
       <a onClick={logout}>{localStorage.Authorization ? "Logout" : ""}</a>
       <div className="relative flex cursor-pointer" onClick={() => history.push('/orders')}>
-              <span className="bg-primary w-6 h-6 rounded-full flex items-center justify-center text-white poppins absolute -right-2 -top-2">{order.length}</span>
+              <span className="bg-primary w-6 h-6 rounded-full flex items-center justify-center text-white poppins absolute -right-2 -top-2">4</span>
           <BsCart2 className="cursor-pointer w-6 h-6 text-white" />
       </div>
     </div>
@@ -58,3 +58,60 @@ export default function Navbar(){
     </>
     )
 }
+
+
+
+
+
+// import React, { createContext, useContext, useState } from 'react';
+// import axios from 'axios';
+
+// export const OrderContext = createContext();
+
+// export const useOrder = () => {
+//     return useContext(OrderContext)
+// }
+// const OrderProvider = ({ children }) => {
+//     const [order, setOrder] = useState([]);
+
+//     // add order function 
+//     const handleOrder = (food) => {
+//         console.log(food, "ini food");
+//         // const {data} = await axios.post("https://api.asmodaycelestia.online/cart", {
+//         //     data: {menuId: id, quantity, price: news.price * quantity},    
+//         //     headers: {
+//         //         Authorization : localStorage.getItem('Authorization'),
+//         //     }
+//         // })
+//         // setOrder((prevValue) => {
+//         //     return [
+//         //         ...prevValue,
+//         //         food, 
+//         //     ]
+//         // })
+//     }
+
+//     //remove order from cart 
+//     // const removeOrder = (id) => {
+//     //     setOrder((prev) => {
+//     //         return prev.filter(item => {
+//     //             return item.id !== id
+//     //         })
+//     //     })
+//     // }
+
+
+//     const value = {
+//         setOrder,
+//         order,
+//         handleOrder,
+//         // removeOrder
+//     }
+//     return (
+//         <OrderContext.Provider value={value}>
+//             {children}
+//         </OrderContext.Provider>
+//     )
+// }
+
+// export default OrderProvider

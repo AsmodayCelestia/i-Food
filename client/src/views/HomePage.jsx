@@ -139,7 +139,7 @@ export default function HomePage({changePage}){
         </form>
     </div>
 
-        <div className="flex text-white">
+    <div className="flex text-white">
         <div className="dropdown dropdown-hover">
             <label tabIndex={0} className="btn m-1 text-white">
             Filter By Category

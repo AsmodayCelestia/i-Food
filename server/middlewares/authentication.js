@@ -2,7 +2,7 @@ const { verifyToken } = require("../helpers/jwt")
 const {User} = require('../models')
 
 async function authentication(req, res, next) {
-    console.log(req, "<<<<<<<<<");
+    console.log(req.headers, "<<<<<<<<<");
     try{
         //1. Cek apakah user sudah login, jika sudah maka access_token harusnya ada
         // console.log(req.headers.authorization, "ayo dong");

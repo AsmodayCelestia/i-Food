@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -7,8 +7,11 @@ import { BsCart2 } from 'react-icons/bs';
 import swal from "sweetalert"
 import React from "react";
 import axios from "axios";
+import { OrderContext } from "../App";
 
 export default function detailNews(){
+  let {anything} = useContext(OrderContext)
+  console.log(anything,'zzzzzzzzzzzzzfdsfsfdsfds');
     const [news, setNews] = useState({})
     const [quantity, setQuantity] = useState(1)
     const [disabled, setDisabled] = useState(false)
@@ -75,12 +78,12 @@ export default function detailNews(){
         </div>
         <div className="mt-7 flex flex-col w-full font-extrabold text-5xl">
           <label htmlFor="">
-            {news.price}
+            Rp. {news.price},00
           </label>
         </div>
                         {/* price and quantity  */}
                             <div className="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
-                                <h1 className="text-3xl font-bold text-black poppins select-none" >${(news.price * quantity).toFixed(2)}</h1>
+                                <h1 className="text-3xl font-bold text-black poppins select-none" >Rp. {(news.price * quantity).toFixed(2)}</h1>
                                 {/* quantity  */}
                                 <div className="flex items-center border border-gray-200 px-4 py-2 space-x-6 rounded-full">
                                     <AiOutlineMinus onClick={() => {
