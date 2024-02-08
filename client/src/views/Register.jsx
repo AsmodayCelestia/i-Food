@@ -26,7 +26,7 @@ export default function login(){
       event.preventDefault()
       try {
         const { data } = await axios({
-            url: `https://api.asmodaycelestia.online/register`,
+            url: `http://localhost:3000/ifood/register`,
             method: `POST`,
             data: form,
             headers: {
