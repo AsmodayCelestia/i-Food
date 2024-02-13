@@ -98,10 +98,10 @@ class Controller{
         let offset = 0
 
         //search
-        if(keyword["title"] !== '' && typeof keyword["title"] !== 'undefined'){
-            const name = {[Op.iLike]: `%${keyword.title.name}%`};
-                paramQuerySQL.where = {name};
-        }
+        // if(keyword["title"] !== '' && typeof keyword["title"] !== 'undefined'){
+        //     const name = {[Op.iLike]: `%${keyword.title.name}%`};
+        //         paramQuerySQL.where = {name};
+        // }
 
         // sorting
         if (sort){
