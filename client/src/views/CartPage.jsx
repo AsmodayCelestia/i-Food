@@ -14,8 +14,8 @@ const Cart = () => {
   const fetchCart = async () => {
     setIsLoading(true);
     try {
-      // const { data } = await axios.get("https://api.asmodaycelestia.online/ifood/cart", {
-        const { data } = await axios.get("http://localhost:3000/ifood/cart", {
+      const { data } = await axios.get("https://api.asmodaycelestia.online/ifood/cart", {
+        // const { data } = await axios.get("http://localhost:3000/ifood/cart", {
         headers: {
           Authorization: localStorage.getItem('Authorization'),
         }
@@ -36,8 +36,8 @@ const Cart = () => {
   const buy = async () => {
     try {
       // Make a POST request to send the total price to the server
-      // const response = await axios.post("https://api.asmodaycelestia.online/ifood/payment", {
-        const response = await axios.post("http://localhost:3000/ifood/payment", {
+      const response = await axios.post("https://api.asmodaycelestia.online/ifood/payment", {
+        // const response = await axios.post("http://localhost:3000/ifood/payment", {
         total: calculateTotal(),
       }, {
         headers: {
