@@ -13,6 +13,7 @@ async function authentication(req, res, next) {
             bearerToken = req.body.headers.Authorization
 
         }
+        console.log(req);
         console.log(bearerToken, "harus masuk");
         if(!bearerToken){
             throw {name: "Invalid Token"}
