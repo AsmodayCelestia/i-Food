@@ -23,7 +23,7 @@ export default function login(){
     const handleLogin =  async (event)=>{
       event.preventDefault()
       try {
-        const {data} = await axios.post("https://api.asmodaycelestia.online/ifood/login", form)
+        const {data} = await axios.post("https://ifood.asmodaycelestia.online/ifood/login", form)
         // const {data} = await axios.post("http://localhost:3000/ifood/login", form)
         console.log(data);
         localStorage.Authorization = `${data.Authorization}`
@@ -38,7 +38,7 @@ export default function login(){
         console.log(credentialResponse);
         const {data} = await axios({
           method: "POST",
-          url: "https://api.asmodaycelestia.online/ifood/googleLogin",
+          url: "https://ifood.asmodaycelestia.online/ifood/googleLogin",
           // url: "http://localhost:3000/ifood/googleLogin",
           headers: {
             google_token: credentialResponse.credential

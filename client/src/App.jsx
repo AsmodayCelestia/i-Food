@@ -96,7 +96,7 @@ function App() {
     total()
 }, [order])
   const total = async()=>{
-    const {data} = await axios.get('https://api.asmodaycelestia.online/cart', {
+    const {data} = await axios.get('https://ifood.asmodaycelestia.online/ifood/cart', {
       headers: {
         Authorization : localStorage.getItem('Authorization'),
     }
