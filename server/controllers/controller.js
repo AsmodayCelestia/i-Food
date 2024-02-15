@@ -10,6 +10,7 @@ class Controller{
     static async login(req, res, next){
         try {
             const {email, password} = req.body
+            console.log(req.body,"<<<<<<<<< THIS IS BODY");
             if(!email){
                 res.status(404).json({message: "Email is required"})
             }
@@ -17,7 +18,7 @@ class Controller{
                 res.status(404).json({message: "Password is required"})
             }
             const user = await User.findOne({where:{email}})
-            console.log(user);
+            console.log(user,"<<<<<<< THIS IS USER");
             if(!user){
                 res.status(404).json({message: "Invalid email/password"})
             }
