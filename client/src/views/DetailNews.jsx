@@ -29,7 +29,7 @@ export default function detailNews(){
     const fetchById =async()=>{
         setIsLoading(true)
         try{
-            const {data} = await axios.get("https://ifood.asmodaycelestia.online/ifood/menu/"+id)
+            const {data} = await axios.get("https://ifood.asmodaycelestia.online/menu/"+id)
             // const {data} = await axios.get("http://localhost:3000/ifood/menu/"+id)
             console.log(data, "<<<<<<<<<");
             setNews(data.menu)
@@ -42,7 +42,7 @@ export default function detailNews(){
         try {
             console.log("click", id);
             console.log(localStorage.getItem('Authorization'));
-            const {data} = await axios.post(`https://ifood.asmodaycelestia.online/ifood/transaction`, {
+            const {data} = await axios.post(`https://ifood.asmodaycelestia.online/transaction`, {
               // const {data} = await axios.post(`http://localhost:3000/ifood/transaction`, {
                 data: {menuId: id, quantity, price: news.price * quantity},    
                 headers: {
